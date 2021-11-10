@@ -162,6 +162,13 @@ MonoBehaviour:
   gunTower: {fileID: 7788935553831189646, guid: 75d7e773e0a25ec419865e831e207bf9, type: 3}
   buildBar: {fileID: 1225626850423865457, guid: 721b1ab94084a7f4a9fd62f468aa5186, type: 3}
   bulletSpawnPoint: {fileID: 2004241363}
+  jumpHeight: 10
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  gravity: -9.81
+  checkRadius: 0.5
+  groundCheck: {fileID: 1503997015}
 --- !u!136 &117225157
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -241,6 +248,7 @@ Transform:
   - {fileID: 1768820502}
   - {fileID: 2004241364}
   - {fileID: 966302493}
+  - {fileID: 1503997015}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -478,7 +486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529007742}
   - component: {fileID: 529007743}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -861,7 +869,7 @@ GameObject:
   - component: {fileID: 795323564}
   - component: {fileID: 795323563}
   - component: {fileID: 795323562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1706,6 +1714,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+--- !u!1 &1503997014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1503997015}
+  m_Layer: 7
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1503997015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503997014}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.993, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 117225160}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1590464357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1871,7 @@ GameObject:
   - component: {fileID: 1626234232}
   - component: {fileID: 1626234231}
   - component: {fileID: 1626234230}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1929,7 +1967,7 @@ GameObject:
   - component: {fileID: 1690538671}
   - component: {fileID: 1690538670}
   - component: {fileID: 1690538669}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

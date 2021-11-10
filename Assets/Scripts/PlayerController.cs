@@ -19,9 +19,23 @@ public class PlayerController : MonoBehaviour
     GameObject buildBarIns = null;
     GunTower buildingGunTower = null;
 
-    // New 
+    // -----------New-------------
     public GameObject bulletSpawnPoint;
     //public static int enemyKills;
+
+    // For Jump
+    [SerializeField] float jumpHeight = 5.0f;
+    [SerializeField] LayerMask groundMask;
+    [SerializeField] float gravity = -9.81f;
+    [SerializeField] float checkRadius = 0.5f;
+    [SerializeField] Transform groundCheck;
+
+    Vector3 downForce;
+
+    bool jump;
+    bool isGrounded;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -79,7 +93,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // New - Jump and Run
         Keyboard keyboard = InputSystem.GetDevice<Keyboard>();
+        isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, groundMask);
+
+        if (isGrounded && downForce.y < 0)
+            downForce.y = -2;
+
+        downForce.y += gravity * Time.deltaTime;
+
+        characterController.Move(downForce * Time.deltaTime); // adds constant down force with gravity value
+
+        if (keyboard.spaceKey.wasPressedThisFrame && isGrounded) 
+        {
+            downForce.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+        }
+
         if (keyboard.leftShiftKey.IsPressed())
         {
             speed = 1000;
@@ -120,6 +149,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(bullet, bulletSpawnPoint.transform.position + bulletSpawnPoint.transform.forward * 2, transform.rotation);
         }
     }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.CompareTag("Enemy"))
@@ -130,7 +160,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnDestroy()
     {
-        gameOverCam.gameObject.SetActive(true);
+        if (gameOverCam != null)
+            gameOverCam.gameObject.SetActive(true);
     }
 
     private void build()

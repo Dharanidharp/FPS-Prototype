@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        GetComponent<Rigidbody>().velocity = transform.forward * 20;
+        GetComponent<Rigidbody>().AddForce(transform.forward * 50, ForceMode.Impulse);
     }
 
     // Update is called once per frame
