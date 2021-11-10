@@ -25,8 +25,10 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy")){
 
+            //PlayerController.enemyKills += 1;
             collision.gameObject.GetComponent<Enemy>().DropItem();
             Destroy(collision.gameObject);
+            
         }
         Destroy(gameObject);
     }

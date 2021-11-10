@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
     GameObject buildBarIns = null;
     GunTower buildingGunTower = null;
 
+    // New 
+    public GameObject bulletSpawnPoint;
+    //public static int enemyKills;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,8 +79,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Keyboard keyboard = InputSystem.GetDevice<Keyboard>();
+        if (keyboard.leftShiftKey.IsPressed())
+        {
+            speed = 1000;
+        }
+        else 
+        {
+            speed = 500;
+        }
+
         transform.rotation = Quaternion.Euler(_rotation);
         ScoreText.setText(resource);
+        //ScoreText.setEnemyText(enemyKills);
     }
 
     private void OnMove(InputValue value)
@@ -102,7 +117,7 @@ public class PlayerController : MonoBehaviour
         float isFire = value.Get<float>();
         if (isFire > 0f)
         {
-            Instantiate(bullet, transform.position + transform.forward * 2, transform.rotation);
+            Instantiate(bullet, bulletSpawnPoint.transform.position + bulletSpawnPoint.transform.forward * 2, transform.rotation);
         }
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)

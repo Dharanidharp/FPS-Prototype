@@ -18,7 +18,7 @@ public class EnemySpawn : MonoBehaviour
         if (count == 0)
         {
             Instantiate(enemy);
-            count = 100;
+            count = 500;
         }
         count--;
     }

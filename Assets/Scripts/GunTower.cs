@@ -77,7 +77,7 @@ public class GunTower : MonoBehaviour
             if (coolDown == 0)
             {
                 Instantiate(bullet, transform.position + transform.forward * 2, transform.rotation);
-                coolDown = 60;
+                coolDown = 20;
             }
             coolDown--;
             if ((pos - transform.position).magnitude > 12)
